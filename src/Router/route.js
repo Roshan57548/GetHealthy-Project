@@ -24,7 +24,7 @@ const AdminCommentUsers = require("../Models/AdminComment");
 const MyAmazonLink = require("../Models/AmazonLink");
 
 //  ------------------------------- eBook registration route ------------------------------------ //
-router.post("/eBook", async (req, res) => {
+router.post("/api/eBook", async (req, res) => {
   let { EmailAddress } = req.body;
 
   if (!EmailAddress) {
