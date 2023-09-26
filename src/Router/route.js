@@ -49,7 +49,7 @@ router.post("/api/eBook", async (req, res) => {
 });
 
 //  ------------------------------- registration route ------------------------------------ //
-router.post("/Sign-Up", async (req, res) => {
+router.post("/api/Sign-Up", async (req, res) => {
   let { firstName, LastName, email, mobileNumber, password, confirmPassword } =
     req.body;
 
@@ -124,7 +124,7 @@ router.post("/Sign-Up", async (req, res) => {
 
 //  ------------------------------- Login route ------------------------------------ //
 
-router.post("/Sign-In", async (req, res) => {
+router.post("/api/Sign-In", async (req, res) => {
   try {
     let token;
     const { email, password } = req.body;
@@ -161,7 +161,7 @@ router.post("/Sign-In", async (req, res) => {
 
 //  ------------------------------- Admin Login route ------------------------------------ //
 
-router.post("/Admin/Sign-In", async (req, res) => {
+router.post("/api/Admin/Sign-In", async (req, res) => {
   try {
     let Admintoken;
     const { EmailAddress, Password } = req.body;
@@ -198,7 +198,7 @@ router.post("/Admin/Sign-In", async (req, res) => {
 
 //  ------------------------------- Reset Password Route ------------------------------------ //
 
-router.post("/Reset-Password-OTP", async (req, res) => {
+router.post("/api/Reset-Password-OTP", async (req, res) => {
   try {
     const { EmailAddress } = req.body;
 
@@ -257,7 +257,7 @@ router.post("/Reset-Password-OTP", async (req, res) => {
 
 //  ------------------------------- Admin Reset Password Route ------------------------------------ //
 
-router.post("/Admin/Reset-Password-OTP", async (req, res) => {
+router.post("/api/Admin/Reset-Password-OTP", async (req, res) => {
   try {
     const { EmailAddress } = req.body;
 
@@ -316,7 +316,7 @@ router.post("/Admin/Reset-Password-OTP", async (req, res) => {
 
 //  ------------------------------- Resend Password Route ------------------------------------ //
 
-router.post("/Resend-Password-OTP", async (req, res) => {
+router.post("/api/Resend-Password-OTP", async (req, res) => {
   try {
     const { EmailAddress } = req.body;
 
@@ -375,7 +375,7 @@ router.post("/Resend-Password-OTP", async (req, res) => {
 
 //  -------------------------------Admin Resend Password Route ------------------------------------ //
 
-router.post("/Admin/Resend-Password-OTP", async (req, res) => {
+router.post("/api/Admin/Resend-Password-OTP", async (req, res) => {
   try {
     const { EmailAddress } = req.body;
 
@@ -435,7 +435,7 @@ router.post("/Admin/Resend-Password-OTP", async (req, res) => {
 
 //  ------------------------------- Update Password Route ------------------------------------ //
 
-router.post("/Update-Password-School", async (req, res) => {
+router.post("/api/Update-Password-School", async (req, res) => {
   try {
     const { values, Email } = req.body;
     const { NewPassword, ConfirmPassword } = values;
@@ -465,7 +465,7 @@ router.post("/Update-Password-School", async (req, res) => {
 
 //  -------------------------------Admin Update Password Route ------------------------------------ //
 
-router.post("/Admin/Update-Password-School", async (req, res) => {
+router.post("/api/Admin/Update-Password-School", async (req, res) => {
   try {
     const { values, Email } = req.body;
     const { NewPassword, ConfirmPassword } = values;
@@ -495,19 +495,19 @@ router.post("/Admin/Update-Password-School", async (req, res) => {
 
 //  ------------------------------- Get Login User Data Route ------------------------------------ //
 
-router.get("/GetUser", authenticateuser, (req, res) => {
+router.get("/api/GetUser", authenticateuser, (req, res) => {
   res.send(req.rootUser);
 });
 
 //  ------------------------------- Get User Data Route ------------------------------------ //
 
-router.get("/GetUserData", authenticateuser, (req, res) => {
+router.get("/api/GetUserData", authenticateuser, (req, res) => {
   res.send(req.rootUser);
 });
 
 //  ------------------------------- logout user route ------------------------------------ //
 
-router.get("/Logout", (req, res) => {
+router.get("/api/Logout", (req, res) => {
   res.clearCookie("AdminTokens", { path: "/" });
   res.clearCookie("UserTokens", { path: "/" });
   res.status(200).json({ message: "logged out succesfully" });
@@ -515,13 +515,13 @@ router.get("/Logout", (req, res) => {
 
 // <-------------------------- route to check Admin login ------------------>
 
-router.get("/Admin/Check/Login", authenticateadmin, async (req, res) => {
+router.get("/api/Admin/Check/Login", authenticateadmin, async (req, res) => {
   res.send(req.rootUser);
 });
 
 // <-------------------------- route to check Admin customer data ------------------>
 
-router.get("/Admin/Dashboard/AllCustomers", async (req, res) => {
+router.get("/api/Admin/Dashboard/AllCustomers", async (req, res) => {
   try {
     const result = await RegistrationUser.find();
     res.status(201).json({ data: result });
@@ -532,7 +532,7 @@ router.get("/Admin/Dashboard/AllCustomers", async (req, res) => {
 
 // <-------------------------- route to check Admin Comment data ------------------>
 
-router.get("/Admin/Dashboard/AllCommentData", async (req, res) => {
+router.get("/api/Admin/Dashboard/AllCommentData", async (req, res) => {
   try {
     const result = await AdminCommentUsers.find();
     res.status(201).json({ data: result });
@@ -543,7 +543,7 @@ router.get("/Admin/Dashboard/AllCommentData", async (req, res) => {
 
 // <-------------------------- route to check Admin customer data ------------------>
 
-router.get("/Admin/Dashboard/ViewFeedback", async (req, res) => {
+router.get("/api/Admin/Dashboard/ViewFeedback", async (req, res) => {
   try {
     const result = await AdminCommentUsers.find();
     res.status(201).json({ data: result });
@@ -554,7 +554,7 @@ router.get("/Admin/Dashboard/ViewFeedback", async (req, res) => {
 
 // <-------------------------- route to check Admin customer data ------------------>
 
-router.post("/Admin/Dashboard/DeleteFeedback", async (req, res) => {
+router.post("/api/Admin/Dashboard/DeleteFeedback", async (req, res) => {
   try {
     const { _id } = req.body;
     await AdminCommentUsers.deleteOne({ _id });
@@ -566,7 +566,7 @@ router.post("/Admin/Dashboard/DeleteFeedback", async (req, res) => {
 
 // <-------------------------- route to check Admin customer feedback data ------------------>
 
-router.get("/Admin/Dashboard/CustomerFeedback", async (req, res) => {
+router.get("/api/Admin/Dashboard/CustomerFeedback", async (req, res) => {
   try {
     const result = await CommentUsers.find();
     res.status(201).json({ data: result });
@@ -577,7 +577,7 @@ router.get("/Admin/Dashboard/CustomerFeedback", async (req, res) => {
 
 // <-------------------------- route to check Admin amazon link  data ------------------>
 
-router.get("/Admin/Dashboard/MyAmazonLink", async (req, res) => {
+router.get("/api/Admin/Dashboard/MyAmazonLink", async (req, res) => {
   try {
     const result = await MyAmazonLink.find();
     res.status(201).json({ data: result });
@@ -587,7 +587,7 @@ router.get("/Admin/Dashboard/MyAmazonLink", async (req, res) => {
 });
 
 //  ------------------------------- comment route ------------------------------------ //
-router.post("/PostComment", async (req, res) => {
+router.post("/api/PostComment", async (req, res) => {
   let { firstName, LastName, email, mobileNumber, comment } = req.body;
 
   if (!firstName || !LastName || !email || !mobileNumber || !comment) {
@@ -612,7 +612,7 @@ router.post("/PostComment", async (req, res) => {
 });
 
 //  ------------------------------- Admin comment route ------------------------------------ //
-router.post("/Admin/PostComment", async (req, res) => {
+router.post("/api/Admin/PostComment", async (req, res) => {
   let { FirstName, LastName, DateOfBirth, ShortBio } = req.body;
   if (!FirstName || !LastName || !DateOfBirth || !ShortBio) {
     return res.status(421).json({ error: "All field are required" });
@@ -633,7 +633,7 @@ router.post("/Admin/PostComment", async (req, res) => {
 });
 
 //  ------------------------------- Admin comment route ------------------------------------ / /
-  router.put("/Admin/AmazonLink", async (req, res) => {
+  router.put("/api/Admin/AmazonLink", async (req, res) => {
     let { ShortBio } = req.body;
     
     if (!ShortBio) {
