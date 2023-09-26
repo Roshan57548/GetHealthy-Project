@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js -p 8000",
-    "test": "mocha --timeout 10000"
+    "start": "node app.js",
+    "test": "mocha --timeout 10000",
+    "dev": "concurrently \"npm start\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "bcryptjs": "^2.4.3",
     "chai": "^4.3.7",
     "chai-http": "^4.4.0",
+    "concurrently": "^8.2.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
