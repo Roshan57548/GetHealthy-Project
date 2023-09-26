@@ -11,6 +11,7 @@ app.use(cookieParser());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended:true,limit: '50mb'}));
 
+//static
 app.use(express.static(path.join(__dirname,'./client/dist')));
 app.get("*",function(req,res){
     res.sendFile(path.join(__dirname,'./client/dist/index.html'));
