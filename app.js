@@ -21,7 +21,6 @@ app.get("*",function(req,res){
 })
 
 require('./src/Database/Connection');
-
 const router = require('./src/Router/route');
 app.use(router);
 
