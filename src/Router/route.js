@@ -146,8 +146,10 @@ router.post("/api/Sign-In", async (req, res) => {
 
         res.cookie("UserTokens", token, {
           expires: new Date(Date.now() + 5184000),
-          httpOnly: true,
           secure: true,
+          httpOnly: true,
+          domain: "gethealthy.co.in",
+          sameSite: "strict",
         });
 
         res.json({ message: "Sign In Successfully" });
@@ -184,8 +186,10 @@ router.post("/api/Admin/Sign-In", async (req, res) => {
 
         res.cookie("AdminTokens", Admintoken, {
           expires: new Date(Date.now() + 5184000),
-          httpOnly: true,
           secure: true,
+          httpOnly: true,
+          domain: "gethealthy.co.in",
+          sameSite: "strict",
         });
 
         res.json({ message: "Sign In Successfully" });
@@ -635,22 +639,22 @@ router.post("/api/Admin/PostComment", async (req, res) => {
 });
 
 //  ------------------------------- Admin comment route ------------------------------------ / /
-  router.put("/api/Admin/AmazonLink", async (req, res) => {
-    let { ShortBio } = req.body;
-    
-    if (!ShortBio) {
-      return res.status(421).json({ error: "All field are required" });
-    }
-    
-    try {
-      const commentuser = await MyAmazonLink.updateOne(
-        { _id: "65115f5e067ab34d35caa47d" },
-        { $set: { "Link": ShortBio } }
-      );
-      res.status(200).json({ success: "Comment Post Successfully" });
-    } catch (err) {
-      console.log(err);
-    }
-  });
+router.put("/api/Admin/AmazonLink", async (req, res) => {
+  let { ShortBio } = req.body;
+
+  if (!ShortBio) {
+    return res.status(421).json({ error: "All field are required" });
+  }
+
+  try {
+    const commentuser = await MyAmazonLink.updateOne(
+      { _id: "65115f5e067ab34d35caa47d" },
+      { $set: { Link: ShortBio } }
+    );
+    res.status(200).json({ success: "Comment Post Successfully" });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
