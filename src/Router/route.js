@@ -147,9 +147,9 @@ router.post("/api/Sign-In", async (req, res) => {
         res.cookie("UserTokens", token, {
           expires: new Date(Date.now() + 5184000),
           secure: true,
-          httpOnly: true,
-          domain: "www.gethealthy.co.in",
-          sameSite: "strict",
+          // httpOnly: true,
+          // domain: "www.gethealthy.co.in",
+          // sameSite: "strict",
         });
 
         res.json({ message: "Sign In Successfully" });
@@ -187,9 +187,9 @@ router.post("/api/Admin/Sign-In", async (req, res) => {
         res.cookie("AdminTokens", Admintoken, {
           expires: new Date(Date.now() + 5184000),
           secure: true,
-          httpOnly: true,
-          domain: "www.gethealthy.co.in",
-          sameSite: "strict",
+          // httpOnly: true,
+          // domain: "www.gethealthy.co.in",
+          // sameSite: "strict",
         });
 
         res.json({ message: "Sign In Successfully" });
