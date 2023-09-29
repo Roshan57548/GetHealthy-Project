@@ -148,7 +148,7 @@ router.post("/api/Sign-In", async (req, res) => {
           expires: new Date(Date.now() + 5184000),
           secure: true,
           httpOnly: true,
-          domain: "gethealthy.co.in",
+          domain: "www.gethealthy.co.in",
           sameSite: "strict",
         });
 
