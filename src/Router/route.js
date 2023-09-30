@@ -502,6 +502,7 @@ router.post("/Admin/Update-Password-School", async (req, res) => {
 //  ------------------------------- Get Login User Data Route ------------------------------------ //
 
 router.get("/GetUser", authenticateuser, (req, res) => {
+  console.log(req.rootUser);
   res.send(req.rootUser);
 });
 
