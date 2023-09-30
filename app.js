@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(cors({
-    origin: "https://aquamarine-tulumba-4ebd80.netlify.app", 
+    origin: "https://wondrous-lamington-0edfe9.netlify.app/", 
     credentials: true, 
 }));
 app.use(cookieParser());
