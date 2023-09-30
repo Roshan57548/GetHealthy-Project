@@ -501,20 +501,19 @@ router.post("/Admin/Update-Password-School", async (req, res) => {
 
 //  ------------------------------- Get Login User Data Route ------------------------------------ //
 
-router.get("/GetUser", authenticateuser, (req, res) => {
-  console.log(req.rootUser);
+router.get("/GetUser", authenticateuser, async (req, res) => {
   res.send(req.rootUser);
 });
 
 //  ------------------------------- Get User Data Route ------------------------------------ //
 
-router.get("/GetUserData", authenticateuser, (req, res) => {
+router.get("/GetUserData", authenticateuser, async (req, res) => {
   res.send(req.rootUser);
 });
 
 //  ------------------------------- logout user route ------------------------------------ //
 
-router.get("/Logout", (req, res) => {
+router.get("/Logout", async (req, res) => {
   res.clearCookie("AdminTokens", { path: "/" });
   res.clearCookie("UserTokens", { path: "/" });
   res.status(200).json({ message: "logged out succesfully" });
